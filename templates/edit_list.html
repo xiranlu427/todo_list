@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <section id="todos">
+    <header>
+      <h2>Editing "{{ lst['title'] }}"</h2>
+      <ul>
+        <li>
+      <form class="delete" action="/lists/{{ lst['id'] }}/delete"
+                  method="post">
+        <button type="submit" class="delete">Delete List</button>
+      </form>
+    </header>
+  </section>
+
+  <form action="/lists/{{ lst['id'] }}/edit" method="post">
+    <dl>
+      <dt>
+        <label for="list_title">Enter the new title for the list:</label>
+      </dt>
+      <dd>
+        <input name="list_title" id="list_title" type="text" 
+        placeholder="List Title"
+        value="{{ title if title else lst['title'] }}">
+      </dd>
+    </dl>
+    <fieldset class="actions">
+      <input type="submit" value="Save">
+      <a href="/lists/{{ lst['id'] }}">Cancel</a>
+    </fieldset>
+  </form>
+{% endblock %}
